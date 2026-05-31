@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madura Kruszywa</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white:   #FFFFFF;
+  --light:   #F5F3EF;
+  --dark:    #1A1915;
+  --black:   #0E0D0B;
+  --yellow:  #F5B800;
+  --muted:   #6B6860;
+  --border:  #E2DDD6;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Barlow', sans-serif; background: var(--white); color: var(--dark); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 60px; height: 68px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 4px; color: var(--dark);
+}
+.nav-logo em { color: var(--yellow); font-style: normal; }
+nav ul { list-style: none; display: flex; gap: 40px; }
+nav a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--muted); transition: color .2s;
+}
+nav a:hover { color: var(--dark); }
+.nav-btn {
+  background: var(--yellow); color: var(--dark) !important;
+  padding: 10px 24px; font-size: 12px !important;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 68px;
+}
+.hero-left {
+  background: var(--light);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 80px 60px;
+  position: relative; overflow: hidden;
+}
+.hero-left::before {
+  content: 'MADURA';
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 200px; letter-spacing: -4px; line-height: 1;
+  color: rgba(245,184,0,0.07);
+  position: absolute; bottom: -10px; left: -10px;
+  pointer-events: none; white-space: nowrap;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--yellow); color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; padding: 7px 14px;
+  margin-bottom: 28px; width: fit-content;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 8vw, 112px);
+  line-height: .88; letter-spacing: 2px; color: var(--dark);
+  margin-bottom: 32px;
+}
+.hero h1 .accent { color: var(--yellow); display: block; }
+.hero-desc {
+  font-size: 15px; line-height: 1.75; color: var(--muted);
+  max-width: 400px; margin-bottom: 48px;
+}
+.hero-btns { display: flex; gap: 12px; }
+.btn-y {
+  background: var(--yellow); color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 2.5px;
+  text-transform: uppercase; padding: 15px 36px; border: none; cursor: pointer;
+}
+.btn-outline {
+  background: transparent; color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 2.5px;
+  text-transform: uppercase; padding: 15px 36px;
+  border: 1.5px solid var(--dark); cursor: pointer;
+}
+
+.hero-right {
+  position: relative; overflow: hidden;
+}
+.hero-right img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.hero-right-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(245,243,239,0.4) 0%, transparent 40%);
+}
+
+/* ── STATS ── */
+.stats {
+  background: var(--yellow);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.stat {
+  padding: 32px 0; text-align: center;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+.stat:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px; line-height: 1; color: var(--dark);
+}
+.stat-l {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(26,25,21,0.55);
+  margin-top: 4px;
+}
+
+/* ── OFFER BANNER ── */
+.offer-banner {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 60px;
+  display: flex; align-items: center; gap: 0; overflow: hidden;
+}
+.banner-item {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--muted);
+  padding: 0 36px; border-right: 1px solid var(--border); white-space: nowrap;
+}
+.banner-item:first-child { padding-left: 0; }
+.banner-item span { color: var(--yellow); margin-right: 8px; }
+
+/* ── PRODUKTY ── */
+.products { padding: 100px 60px; background: var(--white); }
+.sec-head {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 40px; align-items: end;
+  margin-bottom: 56px;
+  padding-bottom: 32px; border-bottom: 1.5px solid var(--border);
+}
+.sec-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 14px;
+}
+.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(44px, 6vw, 72px); letter-spacing: 2px; line-height: .95; color: var(--dark);
+}
+.sec-desc {
+  font-size: 14px; line-height: 1.75; color: var(--muted); align-self: end;
+}
+
+.prod-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.prod-card {
+  background: var(--light);
+  display: flex; flex-direction: column;
+  border-top: 3px solid transparent;
+  transition: border-color .3s;
+  cursor: pointer; overflow: hidden;
+}
+.prod-card:hover { border-color: var(--yellow); }
+.prod-card:hover .prod-img { transform: scale(1.05); }
+.prod-img-wrap { overflow: hidden; height: 190px; }
+.prod-img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(15%);
+  transition: transform .45s ease;
+}
+.prod-body { padding: 28px 28px 30px; flex: 1; display: flex; flex-direction: column; }
+.prod-frac {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 8px;
+}
+.prod-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; letter-spacing: 1.5px; color: var(--dark); margin-bottom: 10px;
+}
+.prod-desc {
+  font-size: 13px; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 20px;
+}
+.prod-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--border); padding-top: 18px;
+}
+.prod-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; color: var(--dark); letter-spacing: 1px;
+}
+.prod-price small {
+  font-family: 'Barlow', sans-serif;
+  font-size: 11px; color: var(--muted); font-weight: 400; letter-spacing: 0;
+}
+.prod-arrow {
+  width: 36px; height: 36px;
+  background: var(--yellow); color: var(--dark);
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+
+/* ── O FIRMIE ── */
+.about {
+  display: grid; grid-template-columns: 55% 45%;
+  background: var(--light);
+}
+.about-img-wrap { position: relative; overflow: hidden; min-height: 580px; }
+.about-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-img-badge {
+  position: absolute; bottom: 40px; right: 40px;
+  background: var(--yellow); padding: 20px 28px; text-align: center;
+}
+.about-img-badge .big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px; line-height: 1; color: var(--dark);
+}
+.about-img-badge .small {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(26,25,21,0.6);
+}
+.about-content {
+  padding: 80px 64px 80px 60px;
+  display: flex; flex-direction: column; justify-content: center;
+  background: var(--light);
+}
+.about-content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 4.5vw, 56px); letter-spacing: 2px; line-height: 1.02;
+  color: var(--dark); margin-bottom: 28px; margin-top: 14px;
+}
+.about-content p {
+  font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 14px;
+}
+.check-list { list-style: none; margin: 24px 0 40px; }
+.check-list li {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px; font-weight: 600; letter-spacing: 1px; color: var(--dark);
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 14px;
+}
+.check-list li::before {
+  content: '';
+  width: 8px; height: 8px; min-width: 8px;
+  background: var(--yellow); transform: rotate(45deg);
+}
+
+/* ── DOSTAWA ── */
+.delivery { padding: 100px 60px; background: var(--white); }
+.delivery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 56px;
+}
+.del-card { background: var(--light); padding: 44px 32px; }
+.del-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 60px; color: rgba(245,184,0,0.35); line-height: 1; margin-bottom: 20px;
+}
+.del-line { width: 32px; height: 3px; background: var(--yellow); margin-bottom: 18px; }
+.del-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; letter-spacing: 2px; margin-bottom: 12px; color: var(--dark);
+}
+.del-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* ── KONTAKT ── */
+.contact {
+  background: var(--yellow);
+  display: grid; grid-template-columns: 1fr 1fr;
+}
+.contact-left { padding: 100px 60px; }
+.contact-left h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 7vw, 92px); line-height: .9;
+  color: var(--dark); letter-spacing: 2px; margin-bottom: 24px;
+}
+.contact-left p { font-size: 15px; color: rgba(26,25,21,0.6); line-height: 1.75; margin-bottom: 44px; }
+.contact-rows { display: flex; flex-direction: column; gap: 14px; }
+.c-row {
+  display: flex; align-items: center; gap: 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 17px; color: var(--dark); letter-spacing: .5px;
+}
+.c-icon {
+  width: 46px; height: 46px; min-width: 46px;
+  background: var(--dark); color: var(--yellow);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+
+.contact-right { background: var(--white); padding: 100px 60px; }
+.contact-right .sec-label { color: var(--yellow); margin-bottom: 24px; }
+.contact-right h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 2px; color: var(--dark); margin-bottom: 36px;
+}
+.form { display: flex; flex-direction: column; gap: 10px; }
+.form input, .form textarea, .form select {
+  background: var(--light);
+  border: 1.5px solid var(--border);
+  color: var(--dark);
+  font-family: 'Barlow', sans-serif; font-size: 14px;
+  padding: 14px 18px; outline: none; resize: none;
+  transition: border-color .2s;
+}
+.form input::placeholder, .form textarea::placeholder { color: var(--muted); }
+.form input:focus, .form textarea:focus, .form select:focus { border-color: var(--yellow); }
+.form select { color: var(--muted); }
+.form textarea { height: 110px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.btn-send {
+  background: var(--yellow); color: var(--dark);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 3px;
+  text-transform: uppercase; padding: 17px; border: none; cursor: pointer; margin-top: 4px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 36px 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 3px solid var(--yellow);
+}
+footer .nav-logo { font-size: 20px; color: var(--white); }
+footer .nav-logo em { color: var(--yellow); }
+footer p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; letter-spacing: 1.5px; color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MADURA <em>KRUSZYWA</em></div>
+  <ul>
+    <li><a href="#produkty">Oferta</a></li>
+    <li><a href="#o-nas">O firmie</a></li>
+    <li><a href="#dostawa">Dostawa</a></li>
+    <li><a href="#kontakt" class="nav-btn">Zamów</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">✦ Sprzedaż kruszywa</div>
+    <h1>
+      MADURA<br>
+      <span class="accent">KRUSZYWA</span>
+      PROSTO<br>Z KOPALNI
+    </h1>
+    <p class="hero-desc">Sprzedajemy kruszywo naturalne i łamane najwyższej jakości — grysy, piasek, żwir i tłuczeń. Dostawa luzem i w big-bagach.</p>
+    <div class="hero-btns">
+      <button class="btn-y">Sprawdź ofertę</button>
+      <button class="btn-outline">Zadzwoń teraz</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1000&q=85" alt="Koparka przy pracy">
+    <div class="hero-right-overlay"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">250+</div><div class="stat-l">Zadowolonych klientów</div></div>
+  <div class="stat"><div class="stat-n">15</div><div class="stat-l">Lat doświadczenia</div></div>
+  <div class="stat"><div class="stat-n">150 km</div><div class="stat-l">Zasięg dostaw</div></div>
+  <div class="stat"><div class="stat-n">30+</div><div class="stat-l">Rodzajów kruszywa</div></div>
+</div>
+
+<!-- OFFER BANNER -->
+<div class="offer-banner">
+  <div class="banner-item"><span>✦</span>Grys granitowy</div>
+  <div class="banner-item"><span>✦</span>Piasek płukany</div>
+  <div class="banner-item"><span>✦</span>Żwir naturalny</div>
+  <div class="banner-item"><span>✦</span>Tłuczeń drogowy</div>
+  <div class="banner-item"><span>✦</span>Kliniec</div>
+  <div class="banner-item"><span>✦</span>Destrukt asfaltowy</div>
+  <div class="banner-item"><span>✦</span>Zapraszamy do współpracy</div>
+</div>
+
+<!-- PRODUKTY -->
+<section class="products" id="produkty">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label">Nasza oferta</div>
+      <div class="sec-title">RODZAJE<br>KRUSZYWA</div>
+    </div>
+    <p class="sec-desc">Wszystkie produkty posiadają certyfikaty PN-EN. Sprzedaż luzem i w big-bagach. Możliwość odbioru własnego lub dostawy na budowę.</p>
+  </div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Grys granitowy"></div>
+      <div class="prod-body">
+        <div class="prod-frac">Frakcje: 4/8 · 8/16 · 16/32</div>
+        <div class="prod-name">GRYS GRANITOWY</div>
+        <p class="prod-desc">Do podbudów drogowych, betonu i ogrodów ozdobnych. Odporny na ścieranie i mróz.</p>
+        <div class="prod-footer">
+          <div class="prod-price">od 85 zł/t <small>+ transport</small></div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80" alt="Piasek płukany"></div>
+      <div class="prod-body">
+        <div class="prod-frac">Frakcje: 0/2 · 0/4</div>
+        <div class="prod-name">PIASEK PŁUKANY</div>
+        <p class="prod-desc">Czysty piasek budowlany i ogrodowy. Idealny do zapraw, tynków i zasypek.</p>
+        <div class="prod-footer">
+          <div class="prod-price">od 55 zł/t <small>+ transport</small></div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80" alt="Tłuczeń drogowy"></div>
+      <div class="prod-body">
+        <div class="prod-frac">Frakcje: 31,5/63</div>
+        <div class="prod-name">TŁUCZEŃ DROGOWY</div>
+        <p class="prod-desc">Do budowy dróg i utwardzania nawierzchni gruntowych. Wysoka nośność.</p>
+        <div class="prod-footer">
+          <div class="prod-price">od 70 zł/t <small>+ transport</small></div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80" alt="Żwir naturalny"></div>
+      <div class="prod-body">
+        <div class="prod-frac">Frakcje: 2/8 · 8/16</div>
+        <div class="prod-name">ŻWIR NATURALNY</div>
+        <p class="prod-desc">Do drenażów, filtracji wody i podbudów fundamentów.</p>
+        <div class="prod-footer">
+          <div class="prod-price">od 62 zł/t <small>+ transport</small></div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80" alt="Kliniec"></div>
+      <div class="prod-body">
+        <div class="prod-frac">Frakcja: 4/31,5</div>
+        <div class="prod-name">KLINIEC</div>
+        <p class="prod-desc">Utwardzanie podjazdów, ścieżek i placów. Warstwa wiążąca i wyrównująca.</p>
+        <div class="prod-footer">
+          <div class="prod-price">od 68 zł/t <small>+ transport</small></div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img-wrap"><img class="prod-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Destrukt"></div>
+      <div class="prod-body">
+        <div class="prod-frac">Materiał recyklingowy</div>
+        <div class="prod-name">DESTRUKT ASFALTOWY</div>
+        <p class="prod-desc">Ekonomiczne utwardzenie dróg dojazdowych, placów i parkingów.</p>
+        <div class="prod-footer">
+          <div class="prod-price">od 30 zł/t <small>+ transport</small></div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O FIRMIE -->
+<section class="about" id="o-nas">
+  <div class="about-img-wrap">
+    <img class="about-img" src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=85" alt="Sprzęt Madura Kruszywa">
+    <div class="about-img-badge">
+      <div class="big">15</div>
+      <div class="small">Lat na rynku</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="sec-label">O firmie</div>
+    <h2>MADURA KRUSZYWA —<br>LOKALNY DOSTAWCA<br>Z TRADYCJĄ</h2>
+    <p>Jesteśmy rodzinną firmą z wieloletnim doświadczeniem w sprzedaży i transporcie kruszywa. Obsługujemy firmy budowlane, drogowe oraz klientów indywidualnych.</p>
+    <p>Stawiamy na jakość materiału, terminowość dostaw i uczciwe ceny. Posiadamy własną flotę transportową.</p>
+    <ul class="check-list">
+      <li>Własny transport — auta 8t, 15t i 26t</li>
+      <li>Sprzedaż luzem i w big-bagach</li>
+      <li>Faktury VAT, płatność przelewem lub gotówką</li>
+      <li>Możliwość odbioru własnego z bazy</li>
+      <li>Certyfikowane produkty wg norm PN-EN</li>
+    </ul>
+    <button class="btn-y">Skontaktuj się z nami</button>
+  </div>
+</section>
+
+<!-- DOSTAWA -->
+<section class="delivery" id="dostawa">
+  <div class="sec-head">
+    <div>
+      <div class="sec-label">Jak zamawiać</div>
+      <div class="sec-title">PROSTY<br>PROCES</div>
+    </div>
+    <p class="sec-desc">Od pierwszego kontaktu do dostawy — sprawnie i bez komplikacji.</p>
+  </div>
+  <div class="delivery-grid">
+    <div class="del-card">
+      <div class="del-num">01</div>
+      <div class="del-line"></div>
+      <h3>Zapytanie</h3>
+      <p>Zadzwoń lub napisz. Doradzimy odpowiedni materiał i pomożemy oszacować ilość.</p>
+    </div>
+    <div class="del-card">
+      <div class="del-num">02</div>
+      <div class="del-line"></div>
+      <h3>Wycena</h3>
+      <p>Przygotujemy wycenę w ciągu 24h. Cena obejmuje materiał i dostawę na miejsce.</p>
+    </div>
+    <div class="del-card">
+      <div class="del-num">03</div>
+      <div class="del-line"></div>
+      <h3>Dostawa</h3>
+      <p>Realizacja do 3 dni roboczych. Samochody od 8 do 26 ton.</p>
+    </div>
+    <div class="del-card">
+      <div class="del-num">04</div>
+      <div class="del-line"></div>
+      <h3>Faktura</h3>
+      <p>Po dostawie wystawiamy fakturę VAT. Płatność gotówką lub przelewem bankowym.</p>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="contact-left">
+    <h2>ZAMÓW<br>KRUSZYWO<br>DZIŚ</h2>
+    <p>Skontaktuj się z nami — oddzwonimy w ciągu godziny i ustalimy szczegóły dostawy.</p>
+    <div class="contact-rows">
+      <div class="c-row"><div class="c-icon">📞</div>+48 123 456 789</div>
+      <div class="c-row"><div class="c-icon">✉</div>biuro@madurakruszywa.pl</div>
+      <div class="c-row"><div class="c-icon">📍</div>ul. Przemysłowa 14, Kraków</div>
+      <div class="c-row"><div class="c-icon">🕐</div>Pn–Pt 7:00–17:00, Sb 8:00–13:00</div>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="sec-label">Formularz zamówienia</div>
+    <h3>WYŚLIJ ZAPYTANIE</h3>
+    <div class="form">
+      <div class="form-row">
+        <input type="text" placeholder="Imię i nazwisko">
+        <input type="tel" placeholder="Numer telefonu">
+      </div>
+      <input type="text" placeholder="Nazwa firmy (opcjonalnie)">
+      <select>
+        <option value="" disabled selected>Wybierz rodzaj kruszywa...</option>
+        <option>Grys granitowy</option>
+        <option>Piasek płukany</option>
+        <option>Tłuczeń drogowy</option>
+        <option>Żwir naturalny</option>
+        <option>Kliniec</option>
+        <option>Destrukt asfaltowy</option>
+      </select>
+      <div class="form-row">
+        <input type="text" placeholder="Ilość (np. 20 ton)">
+        <input type="text" placeholder="Adres dostawy">
+      </div>
+      <textarea placeholder="Dodatkowe informacje, termin realizacji..."></textarea>
+      <button class="btn-send">Wyślij zapytanie ›</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="nav-logo">MADURA <em>KRUSZYWA</em></div>
+  <p>© 2026 Madura Kruszywa — Wszelkie prawa zastrzeżone</p>
+  <p>NIP: 000-000-00-00 · Kraków</p>
+</footer>
+
+</body>
+</html>
